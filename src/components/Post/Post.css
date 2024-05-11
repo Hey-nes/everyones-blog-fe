@@ -1,0 +1,75 @@
+.post-wrapper {
+  background-color: rgb(225, 225, 225);
+  border-radius: 1rem;
+  height: auto;
+  width: 75%;
+  margin: 2rem auto;
+  padding: 4rem;
+}
+
+.post {
+  margin: 0 auto;
+  height: auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid black;
+}
+
+.post-wrapper h2,
+.post-wrapper h3,
+.post-wrapper h4 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.post-text {
+  max-width: 80%;
+  margin: 2rem auto;
+}
+
+.post-text p {
+  margin: 1rem 0;
+}
+
+.like-comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.comments {
+  text-align: left;
+}
+
+.comment-box-wrapper,
+.comments {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 1rem;
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.comment-box-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-box-wrapper button {
+  margin: 0 auto;
+  padding: 0 0.25rem;
+}
+
+.comment-box {
+  width: 75%;
+  border-radius: 1rem;
+  margin: 1rem auto;
+  border: 1px solid black;
+  padding: 1rem;
+}

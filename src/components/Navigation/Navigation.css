@@ -1,0 +1,31 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 2px solid black;
+}
+
+.navigation header {
+  display: flex;
+}
+
+.logotype {
+  font-weight: 700;
+}
+
+@media (min-width: 1280px) {
+  .navigation {
+    border-right: 2px solid black;
+    width: 20rem;
+  }
+
+  .navigation menu {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style-type: none;
+  }
+}

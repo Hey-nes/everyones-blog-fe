@@ -1,0 +1,15 @@
+.footer {
+  border-top: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+@media (min-width: 1280px) {
+  .footer {
+    border-top: 2px solid black;
+    display: flex;
+    justify-content: space-around;
+  }
+}
