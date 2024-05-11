@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import Home from "./components/Home/Home";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
-import LoginForm from "./components/LoginForm/LoginForm";
+import RegisterForm from "./components/Forms/RegisterForm";
+import LoginForm from "./components/Forms/LoginForm";
 import CreatePost from "./components/CreatePost/CreatePost";
 
 const App = () => {
@@ -14,10 +14,7 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Home
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
+            <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           }
         />
         <Route path="/register" element={<RegisterForm />} />
