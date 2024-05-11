@@ -33,7 +33,7 @@
   margin: 1rem 0;
 }
 
-.like-comment {
+.comment {
   display: flex;
   align-items: center;
   justify-content: space-around;

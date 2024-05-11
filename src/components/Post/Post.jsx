@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Post.css";
 import axios from "axios";
 
-const Post = ({ post }) => {
+const Post = ({ post, isLoggedIn }) => {
   const [comment, setComment] = useState("");
   const [fetchedComments, setFetchedComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
@@ -52,8 +52,7 @@ const Post = ({ post }) => {
         <div className="post-text">
           <p>{post.postContent}</p>
         </div>
-        <div className="like-comment">
-          <button>Like</button>
+        <div className="comment">
           <button onClick={toggleComments}>
             {showComments ? "Hide comments" : "Show comments"}
           </button>
@@ -68,17 +67,21 @@ const Post = ({ post }) => {
             </div>
           ))}
           <div className="comment-box-wrapper">
-            <h4>Join the discussion: </h4>
-            <form onSubmit={handleSubmit}>
-              <textarea
-                className="comment-box"
-                placeholder="Write your comment here..."
-                value={comment}
-                onChange={handleCommentChange}
-                rows={4}
-              />
-              <button type="submit">Send comment</button>
-            </form>
+            <h4>Join the discussion:</h4>
+            {isLoggedIn ? (
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  className="comment-box"
+                  placeholder="Write your comment here..."
+                  value={comment}
+                  onChange={handleCommentChange}
+                  rows={4}
+                />
+                <button type="submit">Send comment</button>
+              </form>
+            ) : (
+              <p>Please log in to comment.</p>
+            )}
           </div>
         </div>
       )}

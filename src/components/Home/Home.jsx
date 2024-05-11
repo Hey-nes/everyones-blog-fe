@@ -5,7 +5,7 @@ import Hero from "../Hero/Hero";
 import Post from "../Post/Post";
 import Footer from "../Footer/Footer";
 
-const Home = ({ isLoggedIn, userEmail }) => {
+const Home = ({ isLoggedIn, setIsLoggedIn }) => {
   const [posts, setPosts] = useState([]);
 
   // Function to fetch posts
@@ -27,7 +27,7 @@ const Home = ({ isLoggedIn, userEmail }) => {
 
   return (
     <div className="app">
-      <Navigation />
+      <Navigation isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <div className="wrapper">
         <header>
           <h1 className="hidden-mobile">Connect, post, comment!</h1>
@@ -35,7 +35,7 @@ const Home = ({ isLoggedIn, userEmail }) => {
         <main className="main">
           <Hero />
           {posts.map((post) => (
-            <Post key={post._id} post={post} />
+            <Post key={post._id} post={post} isLoggedIn={isLoggedIn} />
           ))}
         </main>
         <Footer />

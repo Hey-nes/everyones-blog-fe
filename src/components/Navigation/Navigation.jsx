@@ -1,7 +1,25 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navigation.css";
-import { Link } from "react-router-dom";
 
-const Navigation = ({ isLoggedIn, userEmail }) => {
+const Navigation = ({ isLoggedIn, setIsLoggedIn }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   return (
     <div className="navigation">
       <header>
@@ -11,7 +29,10 @@ const Navigation = ({ isLoggedIn, userEmail }) => {
         {isLoggedIn ? (
           <>
             <li>
-              <span>Hello {userEmail}</span>
+              <span>You are logged in!</span>
+            </li>
+            <li>
+              <button onClick={handleLogout}>Logout</button>
             </li>
             <li>
               <Link to={"/create-post"}>
