@@ -14,7 +14,10 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            <Home
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
           }
         />
         <Route path="/register" element={<RegisterForm />} />

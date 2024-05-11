@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navigation.css";
 
-const Navigation = ({ isLoggedIn, setIsLoggedIn }) => {
+const Navigation = ({ isLoggedIn, setIsLoggedIn, setIsAdmin }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    setIsAdmin(false);
     navigate("/");
   };
 

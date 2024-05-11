@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import "./Post.css";
 import axios from "axios";
 
-const Post = ({ post, isLoggedIn }) => {
+const Post = ({ post, isLoggedIn, isAdmin }) => {
   const [comment, setComment] = useState("");
   const [fetchedComments, setFetchedComments] = useState([]);
-  const [showComments, setShowComments] = useState(false);
 
   const fetchPostComments = async () => {
     try {
@@ -41,8 +40,15 @@ const Post = ({ post, isLoggedIn }) => {
     }
   };
 
-  const toggleComments = () => {
-    setShowComments((prevState) => !prevState);
+  const deleteComment = async (commentId) => {
+    try {
+      const response = await axios.delete(
+        `https://everyones-blog-be.vercel.app/api/comments/${commentId}`
+      );
+      fetchPostComments();
+    } catch (error) {
+      console.error("Error deleting comment", error);
+    }
   };
 
   return (
@@ -53,38 +59,38 @@ const Post = ({ post, isLoggedIn }) => {
           <p>{post.postContent}</p>
         </div>
         <div className="comment">
-          <button onClick={toggleComments}>
-            {showComments ? "Hide comments" : "Show comments"}
-          </button>
-        </div>
-      </div>
-      {showComments && (
-        <div className="comments">
-          <h3>Comments:</h3>
-          {fetchedComments.map((comment) => (
-            <div key={comment._id}>
-              <p>{comment.text}</p>
+          <div className="comments">
+            <h3>Comments:</h3>
+            {fetchedComments.map((comment) => (
+              <div key={comment._id}>
+                <p>{comment.text}</p>
+                {isAdmin ? (
+                  <button onClick={() => deleteComment(comment._id)}>
+                    Delete
+                  </button>
+                ) : null}
+              </div>
+            ))}
+            <div className="comment-box-wrapper">
+              <h4>Join the discussion:</h4>
+              {isLoggedIn ? (
+                <form onSubmit={handleSubmit}>
+                  <textarea
+                    className="comment-box"
+                    placeholder="Write your comment here..."
+                    value={comment}
+                    onChange={handleCommentChange}
+                    rows={4}
+                  />
+                  <button type="submit">Send comment</button>
+                </form>
+              ) : (
+                <p>Please log in to comment.</p>
+              )}
             </div>
-          ))}
-          <div className="comment-box-wrapper">
-            <h4>Join the discussion:</h4>
-            {isLoggedIn ? (
-              <form onSubmit={handleSubmit}>
-                <textarea
-                  className="comment-box"
-                  placeholder="Write your comment here..."
-                  value={comment}
-                  onChange={handleCommentChange}
-                  rows={4}
-                />
-                <button type="submit">Send comment</button>
-              </form>
-            ) : (
-              <p>Please log in to comment.</p>
-            )}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
