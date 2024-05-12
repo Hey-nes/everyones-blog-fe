@@ -23,34 +23,32 @@ const Navigation = ({ isLoggedIn, setIsLoggedIn, setIsAdmin }) => {
 
   return (
     <div className="navigation">
-      <header>
+      <header className="navigation-header">
         <h1 className="logotype">Everyones Blog</h1>
+        {isLoggedIn ? <span>You are logged in!</span> : null}
       </header>
       <ul className="menu">
         {isLoggedIn ? (
           <>
             <li>
-              <span>You are logged in!</span>
+              <Link to={"/create-post"}>
+                <button>New post</button>
+              </Link>
             </li>
             <li>
               <button onClick={handleLogout}>Logout</button>
-            </li>
-            <li>
-              <Link to={"/create-post"}>
-                <button>Create new post</button>
-              </Link>
             </li>
           </>
         ) : (
           <>
             <li>
-              <Link to="/register">
-                <button>Register</button>
+              <Link to="/login">
+                <button>Log in</button>
               </Link>
             </li>
             <li>
-              <Link to="/login">
-                <button>Log in</button>
+              <Link to="/register">
+                <button>Register</button>
               </Link>
             </li>
           </>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Home from "./components/Home/Home";
 import RegisterForm from "./components/Forms/RegisterForm";
 import LoginForm from "./components/Forms/LoginForm";
-import CreatePost from "./components/CreatePost/CreatePost";
+import CreatePostForm from "./components/Forms/CreatePostForm";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,7 +19,9 @@ const App = () => {
         />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
-        {isLoggedIn && <Route path="/create-post" element={<CreatePost />} />}
+        {isLoggedIn && (
+          <Route path="/create-post" element={<CreatePostForm />} />
+        )}
       </Routes>
     </Router>
   );
